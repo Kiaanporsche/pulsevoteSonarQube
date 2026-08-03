@@ -14,6 +14,29 @@ export default function Login() {
     setError("");
     setSuccess("");
 
+    
+      const isValidEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      const isStrongPassword = (password) =>
+    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{8,}$/.test(password);
+
+ if (!email || !password) {
+    setError("Email and password are required.");
+    return;
+    }
+
+    if (!isValidEmail(email)) {
+    setError("Invalid email format.");
+    return;
+    }
+
+    if (!isStrongPassword(password)) {
+    setError("Password must be at least 8 characters long and include letters and numbers.");
+    return;
+    }
+
+
     try {
       const response = await axios.post(
         "https://localhost:5000/api/auth/login",
@@ -23,6 +46,7 @@ export default function Login() {
         }
       );
 
+     
       localStorage.setItem("token", response.data.token);
       setSuccess("Successfully logged in.");
 
