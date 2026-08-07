@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 
 const authRoutes = require("./routes/authRoutes");
 const organisationRoutes = require("./routes/organisationRoutes");
-const pollRoutes = require("./routes/pollRoutes");
+const pollRoutes = require("./Routes/PollRoutes.js");
 
 
 dotenv.config();
@@ -22,10 +22,12 @@ helmet.contentSecurityPolicy({
     styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
     fontSrc: ["'self'", "https://fonts.gstatic.com"],
     imgSrc: ["'self'", "data:"],
-    connectSrc: ["'self'", "http://localhost:5000"], 
+   connectSrc: ["'self'", "https://localhost:5000"],
     },
 })
 );
+
+app.use(express.json());
 
 app.use("/api/organisations", organisationRoutes);
 app.use("/api/polls", pollRoutes);
@@ -36,7 +38,7 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json());
+
 
 app.get('/', (req, res) => {
 res.send('PulseVote API running!');
@@ -53,13 +55,8 @@ app.get('/test', (req, res) => {
 
 app.use("/api/auth", authRoutes);
 
-app.use(cors({
-  origin: "https://localhost:5173",
-  credentials: true
-}));
 
-
-const { protect } = require("./MiddleWare/authMiddleware");
+const { protect } = require("./middleware/authMiddleware.js");
 
 app.get("/api/protected", protect, (req, res) => {
   res.json({
