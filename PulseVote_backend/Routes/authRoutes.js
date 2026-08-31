@@ -1,7 +1,7 @@
 
 
 const express = require("express");
-const { registerLimiter, loginLimiter} = require("../middleware/rateLimiter")
+const { registerLimiter, loginLimiter} = require("../MiddleWare/rateLimiter")
 const {
   registerUser,
   registerManager,
@@ -12,8 +12,8 @@ const {
 const router = express.Router();
 const { body } = require("express-validator");
 
-const { protect } = require("../middleware/authMiddleware");
-const { requireRole } = require("../middleware/roleMiddleware");
+const { protect } = require("../MiddleWare/authMiddleware");
+const { requireRole } = require("../MiddleWare/roleMiddleware");
 
 
 

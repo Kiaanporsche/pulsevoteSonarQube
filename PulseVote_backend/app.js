@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const authRoutes = require("./Routes/authRoutes");
 const organisationRoutes = require("./Routes/OrganisationRoutes");
 const pollRoutes = require("./Routes/PollRoutes");
-const { protect } = require("./middleware/authMiddleware");
+const { protect } = require("./MiddleWare/authMiddleware");
 
 dotenv.config();
 const app = express();
