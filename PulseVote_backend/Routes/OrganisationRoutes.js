@@ -6,7 +6,7 @@ const {
   getMyOrganisations,
   generateJoinCode,
   joinOrganisation
-} = require("../controllers/organisationController");
+} = require("../Controllers/OrganisationController");
 
 const router = express.Router();
 
