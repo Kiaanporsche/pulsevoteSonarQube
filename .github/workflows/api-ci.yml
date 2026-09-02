@@ -39,7 +39,7 @@ jobs:
       - name: Analyse backend with SonarQube Cloud
         uses: SonarSource/sonarqube-scan-action@v8
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ vars.SONAR_TOKEN }}
         with:
           projectBaseDir: PulseVote_backend
           args: >
